@@ -1,0 +1,42 @@
+#!/bin/bash
+
+# Prompt for input and set default values
+read -p "Masukan APP ID ambil di web my.telegram.org [default: 6]: " APP_ID
+APP_ID=${APP_ID:-6}
+
+read -p "Masukan API HASH ambil di web my.telegram.org [default: eb06d4abfb49dc3eeb1aeb98ae0f581e]: " API_HASH
+API_HASH=${API_HASH:-eb06d4abfb49dc3eeb1aeb98ae0f581e}
+
+read -p "Masukan BOT TOKEN dari @botfather [default: 10010102:2abcdefghijklmnopqrstuvwxyz]: " TG_BOT_TOKEN
+TG_BOT_TOKEN=${TG_BOT_TOKEN:-10010102:2abcdefghijklmnopqrstuvwxyz}
+
+read -p "Masukan User ID untuk hak ADMINS di bot (gunakan spasi untuk pemisah) [default: 1234567890]: " ADMINS
+ADMINS=${ADMINS:-1234567890}
+
+read -p "Masukan Username Telegram mu tanpa @: " OWNER
+
+read -p "Masukan Chat ID dari Group/Channel Untuk Wajib Subscribenya (0 jika tidak dipakai) [default: 0]: " FORCE_SUB1
+FORCE_SUB1=${FORCE_SUB1:-0}
+
+read -p "Masukan ID Channel Untuk [Channel Database] [default: -100]: " CHANNEL_ID
+CHANNEL_ID=${CHANNEL_ID:-100}
+
+read -p "URL Database Anda (ambil dari https://elephantsql.com): " DATABASE_URL
+
+read -p "Fitur PROTECT_CONTENT (True/False) [default: False]: " PROTECT_CONTENT
+PROTECT_CONTENT=${PROTECT_CONTENT:-False}
+
+# Create config.env file
+cat <<EOL > config.env
+APP_ID="$APP_ID"
+API_HASH="$API_HASH"
+TG_BOT_TOKEN="$TG_BOT_TOKEN"
+ADMINS="$ADMINS"
+OWNER="$OWNER"
+FORCE_SUB1="$FORCE_SUB1"
+CHANNEL_ID="$CHANNEL_ID"
+DATABASE_URL="$DATABASE_URL"
+PROTECT_CONTENT=$PROTECT_CONTENT
+EOL
+
+echo "File config.env berhasil dibuat!"
